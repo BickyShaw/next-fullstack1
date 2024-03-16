@@ -1,0 +1,34 @@
+name: Deploy Bicep to Azure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Azure CLI
+        uses: azure/setup-azure-cli@v1
+        with:
+          azcliversion: 'latest'
+
+      - name: Build Bicep file
+        working-directory: '{github.workspace}/bicep'
+        run: |
+          bicep build ./appservice.bicep
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Bicep to Azure
+        working-directory: '{github.workspace}/bicep'
+        run: |
+          az deployment group create --resource-groupdemo-rg --template-file ./appservice.bicep json --parameters @./parameters.json
