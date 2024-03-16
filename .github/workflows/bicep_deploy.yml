@@ -29,19 +29,18 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-            creds: ${{ secrets.AZURE_SPN_CREDENTIAL }}
+            creds: ${{ secrets.AZURE_CREDENTIAL }}
 
       - name: 'deploy storage account bicep'
-        working-directory: '${{github.workspace}}/actions/bicep'
+        working-directory: '${{github.workspace}}/bicep'
         run: |
-          az deployment group create --what-if --resource-group demo-rg --template-file './strorage.bicep' --parameters @parameters.json
+          az deployment group create --what-if --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json
 
   bicep_deployment:
     name: bicep deployment 
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     needs: [bicep_build]
-    environment: production
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -51,9 +50,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-            creds: ${{ secrets.AZURE_SPN_CREDENTIAL }}
+            creds: ${{ secrets.AZURE_CREDENTIAL }}
 
       - name: 'deploy storage account bicep'
-        working-directory: '${{github.workspace}}/actions/bicep'
+        working-directory: '${{github.workspace}}/bicep'
         run: |
-          az deployment group create --resource-group demo-rg --template-file './strorage.bicep' --parameters @parameters.json
+          az deployment group create --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json
