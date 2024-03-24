@@ -1,18 +1,21 @@
-param location string = 'East US' // Default location
+param location string = 'East US'
+param appName string
+param skuTier string
+param nodeVersion string = '14.17'
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
-  name: 'MyAppServicePlan15041995'
+  name: '${appName}-asp'
   location: location
   properties: {
     sku: {
-      name: 'B1'
-      tier: 'Basic'
+      tier: skuTier
+      size: 'F1' // Default size for example purposes
     }
   }
 }
 
 resource webApp 'Microsoft.Web/sites@2021-02-01' = {
-  name: 'MyWebApp15041995'
+  name: appName
   location: location
   properties: {
     serverFarmId: appServicePlan.id
@@ -20,7 +23,7 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
       appSettings: [
         {
           name: 'WEBSITE_NODE_DEFAULT_VERSION'
-          value: '14.17.0'
+          value: nodeVersion
         }
       ]
     }
@@ -28,3 +31,4 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
 }
 
 output webAppName string = webApp.name
+output appServicePlanName string = appServicePlan.name

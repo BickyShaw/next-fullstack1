@@ -1,13 +1,18 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-      "webAppName": {
-        "value": "Vlog-Website"
-      },
-      "location": {
-        "value": "Central India"
-      }
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "East US"
+    },
+    "appName": {
+      "value": "MyWebApp" // Specify your desired app name
+    },
+    "skuTier": {
+      "value": "Free" // Specify the App Service Plan SKU tier
+    },
+    "nodeVersion": {
+      "value": "14.17" // Specify the Node.js version
     }
   }
-  
+}
