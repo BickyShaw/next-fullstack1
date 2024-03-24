@@ -28,10 +28,10 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_SPN_CREDENTIALS }}
 
-#      - name: 'deploy storage account bicep'
-#        working-directory: '${{github.workspace}}/bicep'
-#        run: |
-#          az deployment group create --what-if --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json --subscription e9260890-64fd-4661-a82e-6831d385712a
+      - name: 'deploy storage account bicep'
+        working-directory: '${{github.workspace}}/bicep'
+        run: |
+          az deployment group create --what-if --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json --subscription e9260890-64fd-4661-a82e-6831d385712a
 
   bicep_deployment:
     name: bicep deployment 
