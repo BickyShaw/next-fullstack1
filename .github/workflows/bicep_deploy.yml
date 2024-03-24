@@ -30,7 +30,7 @@ jobs:
 
       - name: 'build bicep code'
         run: |
-          az bicep build --file '../bicep/appservice.bicep'
+          az bicep build --file '${{github.workspace}}/bicep/appservice.bicep'
 
       - name: 'validate bicep code'
         working-directory: ${{github.workspace}}/bicep
