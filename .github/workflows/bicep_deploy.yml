@@ -23,17 +23,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - uses: actions/checkout@v2
       - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_SPN_CREDENTIALS }}
 
       - name: 'build bicep code'
+        working-directory: '${{github.workspace}}/bicep'
         run: |
-          az bicep build --file '${{github.workspace}}/bicep/appservice.bicep'
+          az bicep build --file './appservice.bicep'
 
       - name: 'validate bicep code'
-        working-directory: ${{github.workspace}}/bicep
+        working-directory: '${{github.workspace}}/bicep'
         run: |
           az deployment group validate --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json
 
@@ -55,6 +57,6 @@ jobs:
             creds: ${{ secrets.AZURE_SPN_CREDENTIALS }}
 
       - name: 'deploy storage account bicep'
-        working-directory: ${{github.workspace}}/bicep
+        working-directory: '${{github.workspace}}/bicep'
         run: |
           az deployment group create --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json
