@@ -64,6 +64,6 @@ jobs:
       - name: Deploy Next.js Project
         working-directory: '${{github.workspace}}'
         run: |
-          npm install
-          npm run build
+          npm i
+          npm run dev
           az webapp up --name mywebappname15041995 --resource-group demo-rg --sku F1
