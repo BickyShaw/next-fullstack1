@@ -70,17 +70,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2  
       - name: Install dependencies
-        working-directory: '${{github.workspace}}/bicep'
+        working-directory: '${{github.workspace}}'
         run: npm i   
       - name: Start Next.js development server
-        working-directory: '${{github.workspace}}/bicep'
+        working-directory: '${{github.workspace}}'
         run: npm run dev &  
       - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_SPN_CREDENTIALS }}  
       - name: Deploy to Azure Web App
-        working-directory: '${{github.workspace}}/bicep'
+        working-directory: '${{github.workspace}}'
         run: |
           az webapp up --name mywebappname15041995 --sku F1 --resource-group demo-rg --runtime "NODE:20-lts"
 
