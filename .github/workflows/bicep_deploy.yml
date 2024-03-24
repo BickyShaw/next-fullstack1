@@ -80,4 +80,4 @@ jobs:
       - name: Deploy to Azure Web App
         working-directory: '${{github.workspace}}/bicep'
         run: |
-          az webapp up --name mywebappname15041995 --sku F1 --resource-group demo-rg  
+          az webapp up --name mywebappname15041995 --sku F1 --resource-group demo-rg --runtime node
