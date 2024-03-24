@@ -50,9 +50,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
+            creds: ${{ secrets.AZURE_SPN_CREDENTIALS }}
 
-      - name: 'deploy storage account bicep'
-        working-directory: '${{github.workspace}}/bicep'
-        run: |
-          az deployment group create --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json
+#      - name: 'deploy storage account bicep'
+#        working-directory: '${{github.workspace}}/bicep'
+#        run: |
+#          az deployment group create --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json
