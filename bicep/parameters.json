@@ -2,17 +2,17 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "storageAccountName": {
+      "value": "mystorage15041995"
+    },
     "location": {
-      "value": "East US"
+      "value": "west Europe"
     },
-    "appName": {
-      "value": "MyWebApp"
+    "appServicePlanName": {
+      "value": "myappserviceplan"
     },
-    "skuTier": {
-      "value": "Free" 
-    },
-    "nodeVersion": {
-      "value": "14.17"
+    "webAppName": {
+      "value": "mywebappname15041995"
     }
   }
 }
