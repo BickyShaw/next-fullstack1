@@ -34,7 +34,7 @@ jobs:
           az bicep build --file './appservice.bicep'
 
       - name: 'validate bicep code'
-        working-directory: '${{github.workspace}}/bicep'
+        working-directory: '../bicep'
         run: |
           az deployment group validate --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json
 
@@ -56,6 +56,6 @@ jobs:
             creds: ${{ secrets.AZURE_SPN_CREDENTIALS }}
 
       - name: 'deploy storage account bicep'
-        working-directory: '${{github.workspace}}/bicep'
+        working-directory: '../bicep'
         run: |
           az deployment group create --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json
