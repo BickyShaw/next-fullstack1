@@ -1,6 +1,6 @@
 param location string = 'East US'
 param appName string
-param skuTier string
+param skuTier string = 'Free' // Default SKU tier
 param nodeVersion string = '14.17'
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
