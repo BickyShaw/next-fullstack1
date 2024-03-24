@@ -60,3 +60,10 @@ jobs:
         working-directory: '${{github.workspace}}/bicep'
         run: |
           az deployment group create --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json
+
+      - name: Deploy Next.js Project
+        working-directory: '${{github.workspace}}'
+        run: |
+          npm install
+          npm run build
+          az webapp up --name mywebappname15041995 --resource-group demo-rg --sku F1
