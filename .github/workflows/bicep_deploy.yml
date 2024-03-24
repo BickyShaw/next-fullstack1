@@ -34,7 +34,7 @@ jobs:
           az bicep build --file './appservice.bicep'
 
       - name: 'validate bicep code'
-        working-directory: '../bicep'
+        working-directory: '/bicep'
         run: |
           az deployment group validate --resource-group demo-rg --template-file './appservice.bicep' --parameters @parameters.json
 
