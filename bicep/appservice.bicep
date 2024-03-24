@@ -1,34 +1,29 @@
-param location string = 'East US'
-param appName string
-param skuTier string
-param nodeVersion string = '14.17'
+// storage.bicep
+//deploying storage account and app service
+param appServicePlanName string
+param webAppName string
+param location string
 
-resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
-  name: '${appName}-asp'
+resource appServicePlan 'Microsoft.Web/serverfarms@2019-08-01' = {
+  name: appServicePlanName
   location: location
+  sku: {
+    name: 'F1'
+    tier: 'Free'
+    size: 'F1'
+  }
   properties: {
-    sku: {
-      tier: skuTier // Use the provided value for SKU tier
-      size: 'F1' // Default size for example purposes
-    }
+    reserved: true
   }
 }
 
-resource webApp 'Microsoft.Web/sites@2021-02-01' = {
-  name: appName
+resource webApp 'Microsoft.Web/sites@2019-08-01' = {
+  name: webAppName
   location: location
+  kind: 'app'
   properties: {
     serverFarmId: appServicePlan.id
-    siteConfig: {
-      appSettings: [
-        {
-          name: 'WEBSITE_NODE_DEFAULT_VERSION'
-          value: nodeVersion
-        }
-      ]
-    }
   }
 }
 
-output webAppName string = webApp.name
-output appServicePlanName string = appServicePlan.name
+output webAppUrl string = webApp.properties.defaultHostName
