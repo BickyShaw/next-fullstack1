@@ -1,26 +1,30 @@
-param webAppName string
-param location string
-param sku string = 'F1' // Free pricing tier
+param location string = 'East US' // Default location
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
-  name: '${webAppName}-plan'
+  name: 'MyAppServicePlan15041995'
   location: location
-  kind: 'Linux'
-  sku: {
-    name: sku
-    tier: 'Free'
+  properties: {
+    sku: {
+      name: 'B1'
+      capacity: 1
+    }
   }
 }
 
 resource webApp 'Microsoft.Web/sites@2021-02-01' = {
-  name: webAppName
+  name: 'MyWebApp15041995'
   location: location
-  kind: 'app'
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
-      alwaysOn: true
-      linuxFxVersion: 'DOCKER|nginx'
+      appSettings: [
+        {
+          name: 'WEBSITE_NODE_DEFAULT_VERSION'
+          value: '14.17.0'
+        }
+      ]
     }
   }
 }
+
+output webAppName string = webApp.name
