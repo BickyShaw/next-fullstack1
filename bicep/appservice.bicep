@@ -3,14 +3,12 @@ param appName string
 param skuTier string
 param nodeVersion string = '14.17'
 
-var defaultSkuTier = 'Free' // Default SKU tier if not provided in parameters
-
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
   name: '${appName}-asp'
   location: location
   properties: {
     sku: {
-      tier: skuTier ?? defaultSkuTier // Use provided value or default if null
+      tier: skuTier // Use the provided value for SKU tier
       size: 'F1' // Default size for example purposes
     }
   }
