@@ -70,8 +70,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2  
       - name: Install dependencies
-        run: npm install  
+        working-directory: '${{github.workspace}}/bicep'
+        run: npm i   
       - name: Start Next.js development server
+        working-directory: '${{github.workspace}}/bicep'
         run: npm run dev &  
       - name: Login to Azure
         uses: azure/login@v1
