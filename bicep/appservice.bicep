@@ -1,5 +1,4 @@
-// storage.bicep
-//deploying storage account and app service
+
 param appServicePlanName string
 param webAppName string
 param location string
