@@ -10,7 +10,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
   location: location
   properties: {
     sku: {
-      tier: coalesce(skuTier, defaultSkuTier) // Use provided value or default if null
+      tier: skuTier ?? defaultSkuTier // Use provided value or default if null
       size: 'F1' // Default size for example purposes
     }
   }
