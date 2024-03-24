@@ -29,9 +29,8 @@ jobs:
           creds: ${{ secrets.AZURE_SPN_CREDENTIALS }}
 
       - name: 'build bicep code'
-        working-directory: ${{github.workspace}}/bicep
         run: |
-          az bicep build --file './appservice.bicep'
+          az bicep build --file '../bicep/appservice.bicep'
 
       - name: 'validate bicep code'
         working-directory: ${{github.workspace}}/bicep
