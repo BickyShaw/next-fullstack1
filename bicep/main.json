@@ -4,15 +4,6 @@
     "parameters": {
       "location": {
         "value": "West US"
-      },
-      "rgName": {
-        "value": "MyResourceGroup"
-      },
-      "tags": {
-        "value": {
-          "environment": "Production",
-          "department": "IT"
-        }
       }
     }
   }
