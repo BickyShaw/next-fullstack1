@@ -35,7 +35,7 @@ jobs:
            with:
                 creds: ${{ secrets.AZURE_SPN_CREDENTIALS }}
          - name: Validating RG
-           working-directory: ${{ github.workspace }}/.github/workflows/
+           working-directory: ${{ github.workspace }}
            run: |
              chmod +x ./create_container_app.sh
              ./create_container_app.sh
