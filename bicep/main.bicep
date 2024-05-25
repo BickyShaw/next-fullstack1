@@ -2,9 +2,9 @@ param isInitialDeployment bool = false
 param containerImage string = 'myimage:latest'
 param location string
 
-resource existingContainerApp 'Microsoft.Web/containerApps@2021-03-01' existing = {
-  name: 'myContainerApp'
-}
+//resource existingContainerApp 'Microsoft.Web/containerApps@2021-03-01' existing = {
+//  name: 'myContainerApp'
+//}
 
 
 resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = if (!isInitialDeployment || (isInitialDeployment && containerImage != '')) {
@@ -22,8 +22,8 @@ resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = if (!isInitialD
       containers: [
         {
           name: 'myContainer'
-          //image: containerImage
-          image: isInitialDeployment ? containerImage : existingContainerApp.properties.template.containers[0].image
+          image: containerImage
+//          image: isInitialDeployment ? containerImage : existingContainerApp.properties.template.containers[0].image
           resources: {
             cpu: 1
             memory: '1.0Gi'
