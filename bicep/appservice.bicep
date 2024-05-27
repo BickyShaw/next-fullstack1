@@ -1,12 +1,8 @@
 param appName string
 param location string
 param appServicePlanId string
-//param isInitialDeployment bool = false
-param appSettings object ={}
-param currentAppSettings object = {}
-
-
-
+param appSettings object
+param currentAppSettings object
 
 resource webApp 'Microsoft.Web/sites@2021-02-01' = {
   name: appName

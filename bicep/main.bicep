@@ -6,7 +6,7 @@ param value1 string
 param value2 string
 param value3 string
 
-var appSettings = {
+var newAppSettings = {
   setting1: value1
   setting2: value2
   setting3: value3
@@ -22,9 +22,7 @@ module AppService './appservice.bicep' = {
     appName: appName
     appServicePlanId: appServicePlan.id
     location: location
-    appSettings: appSettings
-    currentAppSettings: isInitialDeployment ? appSettings : list(resourceId('Microsoft.Web/sites/config', '${appName}', 'appsettings'), '2023-01-01').properties
-//    dockerImage: dockerImage
-//    tags: tags
+    appSettings: newAppSettings
+    currentAppSettings: isInitialDeployment ? {} : list(resourceId('Microsoft.Web/sites/config', '${appName}/appsettings'), '2022-03-01').properties
   }
 }
