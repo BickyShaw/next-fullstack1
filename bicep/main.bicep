@@ -23,7 +23,7 @@ module AppService './appservice.bicep' = {
     appServicePlanId: appServicePlan.id
     location: location
     appSettings: appSettings
-    currentAppSettings: isInitialDeployment ? appSettings : list(resourceId('Microsoft.Web/sites/config', 'appName', 'appsettings'), '2023-01-01').properties
+    currentAppSettings: isInitialDeployment ? appSettings : list(resourceId('Microsoft.Web/sites/config', '${appName}', 'appsettings'), '2023-01-01').properties
 //    dockerImage: dockerImage
 //    tags: tags
   }
