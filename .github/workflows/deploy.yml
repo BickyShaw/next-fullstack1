@@ -1,4 +1,4 @@
-name: Deploy Ediam Resources
+name: Manual Changes POC
 #adding code to complete poc
 # Controls when the workflow will run
 on:
@@ -34,7 +34,7 @@ jobs:
            uses: azure/login@v1
            with:
                 creds: ${{ secrets.AZURE_SPN_CREDENTIALS }}
-         - name: Validating RG
+         - name: Manual Changes POC
            working-directory: ${{ github.workspace }}
            run: |
              chmod +x ./.github/workflows/create_app_service_runner.sh
