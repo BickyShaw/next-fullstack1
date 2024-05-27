@@ -8,15 +8,14 @@
     "appServicePlanName": {
       "value": "manualChangesPOCAppServicePlan"
     },
-    "appSettings": {
-      "value": [
-        { "name": "Setting1", "value": "Value1" },
-        { "name": "Setting2", "value": "Value2" },
-        { "name": "Setting3", "value": "Value3" },
-        { "name": "Setting4", "value": "ValueM" },
-        { "name": "Setting5", "value": "ValueZ" },
-        { "name": "Setting6", "value": "Value6" }
-      ]
-    }
+    "value1":{
+       "value": "value1"
+    },
+    "value2":{
+      "value": "value2"
+   },
+   "value3":{
+    "value": "value3"
+   }
   }
 }
