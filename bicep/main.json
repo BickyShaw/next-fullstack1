@@ -14,7 +14,8 @@
         { "name": "Setting2", "value": "Value2" },
         { "name": "Setting3", "value": "Value3" },
         { "name": "Setting4", "value": "ValueM" },
-        { "name": "Setting5", "value": "ValueZ" }
+        { "name": "Setting5", "value": "ValueZ" },
+        { "name": "Setting6", "value": "Value6" }
       ]
     }
   }
