@@ -1,39 +1,28 @@
 param isInitialDeployment bool = false
-param containerImage string = 'myimage:latest'
-param location string
+param appName string
+param appServicePlanName string
+param location string = resourceGroup().location
+param appSettings array = []
 
-//resource existingContainerApp 'Microsoft.Web/containerApps@2021-03-01' existing = {
-//  name: 'myContainerApp'
-//}
+resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' existing = {
+  name: appServicePlanName
+}
 
+// Fetch the existing App Service properties if not initial deployment
+module getAppService 'getAppService.bicep' = if (!isInitialDeployment) {
+  name: 'getAppService'
+  params: {
+    appName: appName
+  }
+}
 
-resource containerApp 'Microsoft.Web/containerApps@2021-03-01' = if (!isInitialDeployment || (isInitialDeployment && containerImage != '')) {
-  name: 'myContainerApp'
+resource webApp 'Microsoft.Web/sites@2021-02-01' = {
+  name: appName
   location: location
   properties: {
-    kubeEnvironmentId: resourceId('Microsoft.Web/kubeEnvironments', 'myKubeEnv')
-    configuration: {
-      ingress: {
-        external: true
-        targetPort: 80
-      }
-    }
-    template: {
-      containers: [
-        {
-          name: 'myContainer'
-          image: containerImage
-//          image: isInitialDeployment ? containerImage : existingContainerApp.properties.template.containers[0].image
-          resources: {
-            cpu: 1
-            memory: '1.0Gi'
-          }
-        }
-      ]
-      scale: {
-        minReplicas: 1
-        maxReplicas: 5
-      }
+    serverFarmId: appServicePlan.id
+    siteConfig: {
+      appSettings: isInitialDeployment ? appSettings : union(getAppService.outputs.appSettings, appSettings)
     }
   }
 }

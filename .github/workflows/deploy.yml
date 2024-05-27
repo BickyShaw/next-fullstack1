@@ -37,7 +37,7 @@ jobs:
          - name: Validating RG
            working-directory: ${{ github.workspace }}
            run: |
-             chmod +x ./.github/workflows/create_container_app.sh
-             ./.github/workflows/create_container_app.sh
+             chmod +x ./.github/workflows/create_app_service_runner.sh
+             ./.github/workflows/create_app_service_runner.sh
              
               
