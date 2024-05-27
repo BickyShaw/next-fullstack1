@@ -14,6 +14,8 @@ var newAppSettings = {
   setting4: value4
 }
 
+//just editing
+
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' existing = {
   name: appServicePlanName
 }
