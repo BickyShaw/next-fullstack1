@@ -16,6 +16,9 @@
    },
    "value3":{
     "value": "valueZ"
+   },
+   "value4":{
+    "value": "error"
    }
   }
 }
