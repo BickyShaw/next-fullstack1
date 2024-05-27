@@ -12,6 +12,8 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
   }
 }
 
+//just editing
+
 resource siteconfig 'Microsoft.Web/sites/config@2022-03-01' = {
   parent: webApp
   name: 'appsettings'
