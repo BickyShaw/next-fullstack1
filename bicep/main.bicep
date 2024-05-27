@@ -17,12 +17,12 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' existing = {
 //}
 
 // Fetch the existing App Service properties if not initial deployment and if the resource exists
-module getAppService './getAppService.bicep' = if (!isInitialDeployment) {
-  name: 'getAppService'
-  params: {
-    appName: appName
-  }
-}
+//module getAppService './getAppService.bicep' = if (!isInitialDeployment) {
+//  name: 'getAppService'
+//  params: {
+//    appName: appName
+//  }
+//}
 
 resource webApp 'Microsoft.Web/sites@2021-02-01' = {
   name: appName
@@ -30,7 +30,8 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
-      appSettings: isInitialDeployment ? appSettings : union(getAppService.outputs.appSettings, appSettings)
+      appSettings: appSettings
+      //appSettings: isInitialDeployment ? appSettings : union(getAppService.outputs.appSettings, appSettings)
     }
   }
 }
