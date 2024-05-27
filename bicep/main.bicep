@@ -3,6 +3,7 @@ param appName string
 param appServicePlanName string
 param location string = resourceGroup().location
 param appSettings array = []
+param appsettingsCurrent array
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' existing = {
   name: appServicePlanName
@@ -30,8 +31,7 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
-      appSettings: appSettings
-      //appSettings: isInitialDeployment ? appSettings : union(getAppService.outputs.appSettings, appSettings)
+      appSettings: isInitialDeployment ? appSettings : appsettingsCurrent[0].properties
     }
   }
 }
