@@ -23,6 +23,6 @@ module AppService './appservice.bicep' = {
     appServicePlanId: appServicePlan.id
     location: location
     appSettings: newAppSettings
-    currentAppSettings: isInitialDeployment ? {} : list(resourceId('Microsoft.Web/sites/config', '${appName}/appsettings'), '2022-03-01').properties
+    currentAppSettings: isInitialDeployment ? {} : list(resourceId('Microsoft.Web/sites/config', appName, 'appsettings'), '2022-03-01').properties
   }
 }
