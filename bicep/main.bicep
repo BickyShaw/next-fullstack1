@@ -1,4 +1,4 @@
-param isInitialDeployment bool
+param isInitialDeployment bool = false
 param appName string
 param appServicePlanName string
 param location string = resourceGroup().location
