@@ -8,6 +8,9 @@
     "appServicePlanName": {
       "value": "manualChangesPOCAppServicePlan"
     },
+    "isInitialDeployment":{
+      "value": "true"
+    },
     "value1":{
        "value": "valueX"
     },

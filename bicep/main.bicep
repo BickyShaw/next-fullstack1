@@ -1,4 +1,4 @@
-param isInitialDeployment bool = false
+param isInitialDeployment bool
 param appName string
 param location string = resourceGroup().location
 param appServicePlanName string
@@ -7,12 +7,7 @@ param value2 string
 param value3 string
 param value4 string
 
-var newAppSettings = {
-  setting1: value1
-  setting2: value2
-  setting3: value3
-  setting4: value4
-}
+
 
 //just editing
 
@@ -26,7 +21,12 @@ module AppService './appservice.bicep' = {
     appName: appName
     appServicePlanId: appServicePlan.id
     location: location
-    appSettings: newAppSettings
+    appSettings: {
+      setting1: value1
+      setting2: value2
+      setting3: value3
+      setting4: value4
+    } 
     currentAppSettings: isInitialDeployment ? {} : list(resourceId('Microsoft.Web/sites/config', appName, 'appsettings'), '2022-03-01').properties
   }
 }
