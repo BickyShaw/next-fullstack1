@@ -6,6 +6,7 @@ param value1 string
 param value2 string
 param value3 string
 param value4 string
+param value5 string
 
 
 
@@ -26,6 +27,7 @@ module AppService './appservice.bicep' = {
       setting2: value2
       setting3: value3
       setting4: value4
+      setting5: value5
     } 
     currentAppSettings: isInitialDeployment ? {} : list(resourceId('Microsoft.Web/sites/config', appName, 'appsettings'), '2022-03-01').properties
   }
