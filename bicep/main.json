@@ -9,7 +9,7 @@
       "value": "manualChangesPOCAppServicePlan"
     },
     "isInitialDeployment":{
-      "value": "true"
+      "value": true
     },
     "value1":{
        "value": "valueX"
